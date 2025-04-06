@@ -20,7 +20,7 @@ import { BaseApiResponse } from 'src/global/request/base-api-response.dto';
 import { CreateUserDto } from './create-user.dto';
 import { PaginationParamsDto } from 'src/global/request/pagination-params.dto';
 
-@ApiTags('users')
+@ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(
@@ -32,6 +32,13 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
+  @ApiOperation({ summary: 'Get current user profile' })
+  @ApiResponse({
+    status: 200,
+    description: 'User profile retrieved successfully',
+    type: User,
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async getMyProfile(
     @ReqContext() ctx: RequestContext,
   ): Promise<BaseApiResponse<User>> {
@@ -63,6 +70,15 @@ export class UserController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of users retrieved successfully',
+    type: User,
+    isArray: true,
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 404, description: 'Users not found' })
   async getUsers(
     @ReqContext() ctx: RequestContext,
     @Query() query: PaginationParamsDto,
@@ -101,6 +117,9 @@ export class UserController {
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Update user by ID' })
+  @ApiResponse({ status: 200, description: 'User updated', type: User })
   async updateUser(
     @ReqContext() ctx: RequestContext,
     @Param('id') id: string,

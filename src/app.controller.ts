@@ -1,9 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
   constructor() {}
   @Get()
+  @ApiOperation({ summary: 'Get API root' })
   getRoot() {
     return {
       name: 'Alysia Backend API',
@@ -14,6 +16,8 @@ export class AppController {
   }
 
   @Get('ping')
+  @ApiOperation({ summary: 'Ping the server' })
+  @HttpCode(HttpStatus.OK)
   ping() {
     return {
       message: 'pong 🔔',
@@ -22,6 +26,8 @@ export class AppController {
   }
 
   @Get('health')
+  @ApiOperation({ summary: 'Check server health' })
+  @HttpCode(HttpStatus.OK)
   getHealth() {
     return {
       status: 'healthy',
