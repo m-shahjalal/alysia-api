@@ -20,6 +20,7 @@ import {
 } from './dtos/reset-password.dto';
 import { User } from '../user/user.entity';
 import { JwtService } from '@nestjs/jwt';
+import { SignUpDto } from './dtos/signup.dto';
 
 @Injectable()
 export class AuthService {
@@ -62,11 +63,11 @@ export class AuthService {
     return this.generateTokens(user);
   }
 
-  async register(registerDto: SignInDto): Promise<AuthResponse> {
+  async register(registerDto: SignUpDto): Promise<AuthResponse> {
     try {
       this.logger.log('Starting user registration process');
 
-      if (!registerDto.username) {
+      if (!registerDto.email && !registerDto.phone) {
         this.logger.error('Registration failed: Email or phone is required');
         throw new BadRequestException('Email or phone is required');
       }

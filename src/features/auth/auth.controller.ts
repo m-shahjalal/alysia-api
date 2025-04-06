@@ -11,7 +11,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthResponse } from './dtos/auth-response.dto';
 import { SignInDto } from './dtos/signin.dto';
-import { SignUpDto } from './dtos/register.dto';
+import { SignUpDto } from './dtos/signup.dto';
 import { VerifyEmailDto } from './dtos/verify-email.dto';
 import { VerifyPhoneDto } from './dtos/verify-phone.dto';
 import {
