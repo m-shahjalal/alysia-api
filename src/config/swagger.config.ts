@@ -26,4 +26,11 @@ export const customOptions = {
     operationsSorter: 'alpha',
   },
   customSiteTitle: 'Alysia API Documentation',
+  customJs: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-bundle.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-standalone-preset.js',
+  ],
+  customCssUrl: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.min.css',
+  ],
 };
