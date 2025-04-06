@@ -16,9 +16,9 @@ import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
 import { ReqContext } from 'src/global/request/req-context.decorator';
 import { RequestContext } from 'src/global/request/request-context.dto';
 import { User } from './user.entity';
-import { BaseApiResponse } from 'src/global/dtos/base-api-response.dto';
+import { BaseApiResponse } from 'src/global/request/base-api-response.dto';
 import { CreateUserDto } from './create-user.dto';
-import { PaginationParamsDto } from 'src/global/dtos/pagination-params.dto';
+import { PaginationParamsDto } from 'src/global/request/pagination-params.dto';
 
 @ApiTags('users')
 @Controller('users')

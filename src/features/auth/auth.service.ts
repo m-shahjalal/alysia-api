@@ -9,8 +9,8 @@ import { randomBytes } from 'crypto';
 import { AppLogger } from 'src/global/logger/logger.service';
 import { SignInDto } from './dtos/signin.dto';
 import { UserService } from '../user/user.service';
-import { EmailService } from 'src/global/services/email.service';
-import { UserAccessTokenClaims } from 'src/global/dtos/auth-token-output.dto';
+import { MailService } from 'src/features/mail/mail.service';
+import { UserAccessTokenClaims } from 'src/global/request/auth-token-output.dto';
 import { AuthResponse } from './dtos/auth-response.dto';
 import { VerifyEmailDto } from './dtos/verify-email.dto';
 import { VerifyPhoneDto } from './dtos/verify-phone.dto';
@@ -26,7 +26,7 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly configService: ConfigService,
-    private readonly emailService: EmailService,
+    private readonly emailService: MailService,
     private readonly logger: AppLogger,
     private readonly jwtService: JwtService,
   ) {
