@@ -6,7 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './create-user.dto';
 import { AppLogger } from 'src/global/logger/logger.service';
 import { User } from './user.entity';
-import { RequestContext } from 'src/global/request/request-context.dto';
+import { RequestContext } from 'src/global/request/req-context.utility';
 
 @Injectable()
 export class UserService {
@@ -100,7 +100,7 @@ export class UserService {
   }
 
   async getUsers(
-    ctx: RequestContext,
+    _ctx: RequestContext,
     limit: number,
     offset: number,
   ): Promise<{ users: User[]; count: number }> {

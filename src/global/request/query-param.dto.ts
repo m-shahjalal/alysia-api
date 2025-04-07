@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
-export class PaginationDto {
+export class QueryParamDto {
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
@@ -33,18 +33,4 @@ export class PaginationDto {
   @IsOptional()
   @IsString()
   fields?: string = '';
-}
-
-export class PaginationParamsDto {
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  @Min(0)
-  offset?: number = 0;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  @Min(1)
-  limit?: number = 10;
 }

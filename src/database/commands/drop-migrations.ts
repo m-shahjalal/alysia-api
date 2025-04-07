@@ -1,4 +1,4 @@
-import dataSource from './orm-datasource';
+import dataSource from '../orm-datasource';
 
 async function dropMigrations() {
   try {

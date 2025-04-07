@@ -19,7 +19,7 @@ import {
   ResetPasswordDto,
 } from './dtos/reset-password.dto';
 import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
-import { UserAccessTokenClaims } from 'src/global/request/auth-token-output.dto';
+import { UserAccessTokenClaims } from 'src/global/request/auth-response.dto';
 import { User } from '../user/user.entity';
 import { JwtRefreshGuard } from 'src/global/guards/jwt-refresh.guard';
 import { GetUser } from './decorators/get-user.decorator';

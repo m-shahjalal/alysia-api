@@ -10,15 +10,17 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserService } from './user.service';
-import { AppLogger } from 'src/global/logger/logger.service';
 import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
-import { ReqContext } from 'src/global/request/req-context.decorator';
-import { RequestContext } from 'src/global/request/request-context.dto';
-import { User } from './user.entity';
-import { BaseApiResponse } from 'src/global/request/base-api-response.dto';
+import { AppLogger } from 'src/global/logger/logger.service';
+import { ServiceResult } from 'src/global/request/api-response.dto';
+import { QueryParamDto } from 'src/global/request/query-param.dto';
+import {
+  ReqContext,
+  RequestContext,
+} from 'src/global/request/req-context.utility';
 import { CreateUserDto } from './create-user.dto';
-import { PaginationParamsDto } from 'src/global/request/pagination-params.dto';
+import { User } from './user.entity';
+import { UserService } from './user.service';
 
 @ApiTags('Users')
 @Controller('users')
@@ -39,15 +41,8 @@ export class UserController {
     type: User,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  async getMyProfile(
-    @ReqContext() ctx: RequestContext,
-  ): Promise<BaseApiResponse<User>> {
-    const user = await this.userService.findById(ctx.user!.id);
-    return {
-      success: true,
-      statusCode: HttpStatus.OK,
-      data: user,
-    };
+  async getMyProfile(@ReqContext() ctx: RequestContext): Promise<User> {
+    return await this.userService.findById(ctx.user!.id);
   }
 
   @Post()
@@ -60,7 +55,7 @@ export class UserController {
   async createUser(
     @ReqContext() ctx: RequestContext,
     @Body() createUserDto: CreateUserDto,
-  ): Promise<BaseApiResponse<User>> {
+  ): Promise<ServiceResult<User>> {
     const user = await this.userService.create(createUserDto);
     return {
       success: true,
@@ -81,21 +76,17 @@ export class UserController {
   @ApiResponse({ status: 404, description: 'Users not found' })
   async getUsers(
     @ReqContext() ctx: RequestContext,
-    @Query() query: PaginationParamsDto,
-  ): Promise<BaseApiResponse<{ users: User[]; count: number }>> {
-    const { limit = 10, offset = 0 } = query;
-    const { users, count } = await this.userService.getUsers(
-      ctx,
-      limit,
-      offset,
-    );
-    const page = Math.floor(offset / limit) + 1;
+    @Query() query: QueryParamDto,
+  ): Promise<ServiceResult<User[]>> {
+    const { limit = 10, page = 0 } = query;
+    const { users, count } = await this.userService.getUsers(ctx, limit, page);
+
     const totalPages = Math.ceil(count / limit);
 
     return {
       success: true,
       statusCode: HttpStatus.OK,
-      data: { users, count },
+      data: users,
       meta: { page, limit, total: count, totalPages },
     };
   }
@@ -107,7 +98,7 @@ export class UserController {
   async getUserById(
     @ReqContext() ctx: RequestContext,
     @Param('id') id: string,
-  ): Promise<BaseApiResponse<User>> {
+  ): Promise<ServiceResult<User>> {
     const user = await this.userService.findById(id);
     return {
       success: true,
@@ -124,7 +115,7 @@ export class UserController {
     @ReqContext() ctx: RequestContext,
     @Param('id') id: string,
     @Body() updateData: Partial<User>,
-  ): Promise<BaseApiResponse<User>> {
+  ): Promise<ServiceResult<User>> {
     const user = await this.userService.update(id, updateData);
     return {
       success: true,

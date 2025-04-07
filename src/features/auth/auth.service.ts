@@ -10,7 +10,7 @@ import { AppLogger } from 'src/global/logger/logger.service';
 import { SignInDto } from './dtos/signin.dto';
 import { UserService } from '../user/user.service';
 import { MailService } from 'src/features/mail/mail.service';
-import { UserAccessTokenClaims } from 'src/global/request/auth-token-output.dto';
+import { UserAccessTokenClaims } from 'src/global/request/auth-response.dto';
 import { AuthResponse } from './dtos/auth-response.dto';
 import { VerifyEmailDto } from './dtos/verify-email.dto';
 import { VerifyPhoneDto } from './dtos/verify-phone.dto';
