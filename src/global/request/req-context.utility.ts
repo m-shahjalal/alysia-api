@@ -1,5 +1,6 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { Request } from 'express';
+import { Request as ExpressRequest } from 'express';
+import { Request } from 'express-serve-static-core';
 import { UserAccessTokenClaims } from './auth-response.dto';
 
 export const REQUEST_ID_TOKEN_HEADER = 'x-request-id';
@@ -20,7 +21,9 @@ export const ReqContext = createParamDecorator(
   },
 );
 
-function createRequestContext(request: Request): RequestContext {
+function createRequestContext(
+  request: Request & ExpressRequest,
+): RequestContext {
   const ctx = new RequestContext();
 
   ctx.requestID = request.header(REQUEST_ID_TOKEN_HEADER) || '';
