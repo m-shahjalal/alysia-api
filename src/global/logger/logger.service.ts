@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { currentTime } from 'src/lib/date';
+import { currentTime } from '../../lib/date';
 import { createLogger, format, Logger, transports } from 'winston';
 
 @Injectable({ scope: Scope.TRANSIENT })
