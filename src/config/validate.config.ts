@@ -9,7 +9,7 @@ import {
   validateSync,
 } from 'class-validator';
 import { Transform } from 'class-transformer';
-import { Environment } from 'src/config/config.utils';
+import { Environment } from '../config/config.utils';
 
 class EnvironmentVariables {
   @IsEnum(Environment)

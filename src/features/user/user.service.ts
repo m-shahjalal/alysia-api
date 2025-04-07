@@ -4,9 +4,9 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 
 import { CreateUserDto } from './create-user.dto';
-import { AppLogger } from 'src/global/logger/logger.service';
+import { AppLogger } from '../../global/logger/logger.service';
 import { User } from './user.entity';
-import { RequestContext } from 'src/global/request/req-context.utility';
+import { RequestContext } from '../../global/request/req-context.utility';
 
 @Injectable()
 export class UserService {

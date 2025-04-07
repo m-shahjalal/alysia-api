@@ -3,7 +3,7 @@ import { Brand } from './brand.entity';
 import { Category } from './category.entity';
 import { ProductImage } from './product-image.entity';
 import { ProductVariant } from './product-variant.entity';
-import { BaseEntity } from 'src/global/orm/base.entity';
+import { BaseEntity } from '../../../global/orm/base.entity';
 
 @Entity('products')
 export class Product extends BaseEntity {

@@ -6,11 +6,11 @@ import {
 import { ConfigService } from '@nestjs/config';
 
 import { randomBytes } from 'crypto';
-import { AppLogger } from 'src/global/logger/logger.service';
+import { AppLogger } from '../../global/logger/logger.service';
 import { SignInDto } from './dtos/signin.dto';
 import { UserService } from '../user/user.service';
-import { MailService } from 'src/features/mail/mail.service';
-import { UserAccessTokenClaims } from 'src/global/request/auth-response.dto';
+import { MailService } from '../../features/mail/mail.service';
+import { UserAccessTokenClaims } from '../../global/request/auth-response.dto';
 import { AuthResponse } from './dtos/auth-response.dto';
 import { VerifyEmailDto } from './dtos/verify-email.dto';
 import { VerifyPhoneDto } from './dtos/verify-phone.dto';
@@ -21,7 +21,7 @@ import {
 import { User } from '../user/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dtos/signup.dto';
-import { AuthConfig } from 'src/config/config.utils';
+import { AuthConfig } from '../../config/config.utils';
 
 @Injectable()
 export class AuthService {

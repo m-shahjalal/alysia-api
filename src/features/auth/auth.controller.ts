@@ -18,10 +18,10 @@ import {
   RequestPasswordResetDto,
   ResetPasswordDto,
 } from './dtos/reset-password.dto';
-import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
-import { UserAccessTokenClaims } from 'src/global/request/auth-response.dto';
+import { JwtAuthGuard } from '../../global/guards/jwt-auth.guard';
+import { UserAccessTokenClaims } from '../../global/request/auth-response.dto';
 import { User } from '../user/user.entity';
-import { JwtRefreshGuard } from 'src/global/guards/jwt-refresh.guard';
+import { JwtRefreshGuard } from '../../global/guards/jwt-refresh.guard';
 import { GetUser } from './decorators/get-user.decorator';
 
 @ApiTags('Authentication')

@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/global/orm/base.entity';
+import { BaseEntity } from '../../global/orm/base.entity';
 import {
   BeforeInsert,
   BeforeUpdate,

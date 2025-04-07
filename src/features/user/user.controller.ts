@@ -10,14 +10,14 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
-import { AppLogger } from 'src/global/logger/logger.service';
-import { ServiceResult } from 'src/global/request/api-response.dto';
-import { QueryParamDto } from 'src/global/request/query-param.dto';
+import { JwtAuthGuard } from '../../global/guards/jwt-auth.guard';
+import { AppLogger } from '../../global/logger/logger.service';
+import { ServiceResult } from '../../global/request/api-response.dto';
+import { QueryParamDto } from '../../global/request/query-param.dto';
 import {
   ReqContext,
   RequestContext,
-} from 'src/global/request/req-context.utility';
+} from '../../global/request/req-context.utility';
 import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';

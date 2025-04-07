@@ -6,11 +6,11 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from '../user/user.module';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
-import { JwtAuthGuard } from 'src/global/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../../global/guards/jwt-auth.guard';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { LoggerModule } from 'src/global/logger/logger.module';
-import { EmailModule } from 'src/features/mail/mail.module';
-import { AUTH_CONFIG_KEY, AuthConfig } from 'src/config/config.utils';
+import { LoggerModule } from '../../global/logger/logger.module';
+import { EmailModule } from '../../features/mail/mail.module';
+import { AUTH_CONFIG_KEY, AuthConfig } from '../../config/config.utils';
 
 @Module({
   imports: [

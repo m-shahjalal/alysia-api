@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ServiceResult } from 'src/global/request/api-response.dto';
-import { QueryParamDto } from 'src/global/request/query-param.dto';
+import { ServiceResult } from '../../global/request/api-response.dto';
+import { QueryParamDto } from '../../global/request/query-param.dto';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
