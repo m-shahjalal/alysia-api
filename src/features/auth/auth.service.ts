@@ -176,10 +176,13 @@ export class AuthService {
 
   private generateTokens(payload: UserAccessTokenClaims): AuthResponse {
     return {
-      accessToken: this.jwtService.sign(payload as object),
-      refreshToken: this.jwtService.sign(payload as object, {
+      accessToken: this.jwtService.sign(payload as any, {
         secret: this.configService.get('secret'),
-        expiresIn: this.configService.get('expiresIn') || '7d',
+        expiresIn: this.configService.get('expiresIn'),
+      }),
+      refreshToken: this.jwtService.sign(payload as any, {
+        secret: this.configService.get('refreshSecret'),
+        expiresIn: this.configService.get('refreshExpiresIn'),
       }),
     };
   }
