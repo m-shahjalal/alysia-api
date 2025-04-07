@@ -21,12 +21,13 @@ import {
 import { User } from '../user/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dtos/signup.dto';
+import { AuthConfig } from 'src/config/config.utils';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService<AuthConfig>,
     private readonly emailService: MailService,
     private readonly logger: AppLogger,
     private readonly jwtService: JwtService,
@@ -175,9 +176,10 @@ export class AuthService {
 
   private generateTokens(payload: UserAccessTokenClaims): AuthResponse {
     return {
-      accessToken: this.jwtService.sign(payload),
-      refreshToken: this.jwtService.sign(payload, {
-        expiresIn: this.configService.get('JWT_EXPIRES_IN') || '7d',
+      accessToken: this.jwtService.sign(payload as object),
+      refreshToken: this.jwtService.sign(payload as object, {
+        secret: this.configService.get('secret'),
+        expiresIn: this.configService.get('expiresIn') || '7d',
       }),
     };
   }
