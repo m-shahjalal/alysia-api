@@ -19,10 +19,7 @@ export class AppController {
   @ApiOperation({ summary: 'Ping the server' })
   @HttpCode(HttpStatus.OK)
   ping() {
-    return {
-      message: 'pong 🔔',
-      timestamp: new Date().toISOString(),
-    };
+    return { message: 'pong 🔔', timestamp: new Date().toISOString() };
   }
 
   @Get('health')
